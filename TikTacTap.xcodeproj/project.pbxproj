@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E8862F7197492DE00398327 /* target.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E8862F6197492DE00398327 /* target.png */; };
+		0E8862F9197493D400398327 /* goal.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E8862F8197493D400398327 /* goal.png */; };
+		0E9C62F4198120ED00FEF50E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E9C62F3198120ED00FEF50E /* GameKit.framework */; };
 		0ECC55031945AC6800E0F7C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC55021945AC6800E0F7C8 /* AppDelegate.swift */; };
 		0ECC55051945AC6800E0F7C8 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ECC55041945AC6800E0F7C8 /* GameScene.sks */; };
 		0ECC55071945AC6800E0F7C8 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC55061945AC6800E0F7C8 /* GameScene.swift */; };
@@ -27,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E808A031949DAEF00CFDF26 /* play.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = play.playground; sourceTree = "<group>"; };
+		0E8862F6197492DE00398327 /* target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target.png; sourceTree = "<group>"; };
+		0E8862F8197493D400398327 /* goal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goal.png; sourceTree = "<group>"; };
+		0E9C62F3198120ED00FEF50E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		0ECC54FD1945AC6800E0F7C8 /* TikTacTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TikTacTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ECC55011945AC6800E0F7C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ECC55021945AC6800E0F7C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E9C62F4198120ED00FEF50E /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +69,8 @@
 		0ECC54F41945AC6800E0F7C8 = {
 			isa = PBXGroup;
 			children = (
+				0E9C62F3198120ED00FEF50E /* GameKit.framework */,
+				0E808A031949DAEF00CFDF26 /* play.playground */,
 				0ECC54FF1945AC6800E0F7C8 /* TikTacTap */,
 				0ECC55161945AC6800E0F7C8 /* TikTacTapTests */,
 				0ECC54FE1945AC6800E0F7C8 /* Products */,
@@ -79,7 +89,9 @@
 		0ECC54FF1945AC6800E0F7C8 /* TikTacTap */ = {
 			isa = PBXGroup;
 			children = (
+				0E8862F6197492DE00398327 /* target.png */,
 				0ECC55021945AC6800E0F7C8 /* AppDelegate.swift */,
+				0E8862F8197493D400398327 /* goal.png */,
 				0ECC55041945AC6800E0F7C8 /* GameScene.sks */,
 				0ECC55061945AC6800E0F7C8 /* GameScene.swift */,
 				0ECC55081945AC6800E0F7C8 /* GameViewController.swift */,
@@ -164,6 +176,12 @@
 				TargetAttributes = {
 					0ECC54FC1945AC6800E0F7C8 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = GXV32V9HC7;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					0ECC55121945AC6800E0F7C8 = {
 						CreatedOnToolsVersion = 6.0;
@@ -195,6 +213,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8862F7197492DE00398327 /* target.png in Resources */,
+				0E8862F9197493D400398327 /* goal.png in Resources */,
 				0ECC550E1945AC6800E0F7C8 /* Images.xcassets in Resources */,
 				0ECC55051945AC6800E0F7C8 /* GameScene.sks in Resources */,
 				0ECC550C1945AC6800E0F7C8 /* Main.storyboard in Resources */,
@@ -335,9 +355,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TikTacTap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -346,9 +369,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TikTacTap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -407,6 +433,7 @@
 				0ECC551F1945AC6800E0F7C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0ECC55201945AC6800E0F7C8 /* Build configuration list for PBXNativeTarget "TikTacTapTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +442,7 @@
 				0ECC55221945AC6800E0F7C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
