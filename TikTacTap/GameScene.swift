@@ -28,14 +28,18 @@ class GameScene: SKScene {
     let target = SKSpriteNode(imageNamed: "target.png")
     let scoreLabel = SKLabelNode()
     
+    let info = SKLabelNode()
+    
     var error = CGFloat(0.0)
     var deltaError = CGFloat(0.0)
-
+    let vals = NSUserDefaults()
     
     
     override func didMoveToView(view: SKView) {
         
-        NSLog("\(view.scene.size)")
+        
+        
+        
         
         self.backgroundColor = UIColor(red: 1.5, green: 1.5, blue: 1.5, alpha: 1.0)
         
@@ -43,12 +47,20 @@ class GameScene: SKScene {
         scoreLabel.text = "TikTacTap"
         scoreLabel.fontSize = 62
         scoreLabel.fontColor = UIColor.blackColor()
-        scoreLabel.position = CGPointMake(frame.midX, frame.minY + 70)
+        scoreLabel.position = CGPointMake(frame.midX + 20, frame.maxY - 100)
+        
+        info.name = "info"
+        info.fontName="Ariel"
+        info.text = ">"
+        info.fontSize = 62
+        info.fontColor = UIColor.blackColor()
+        
+        info.position = CGPointMake(frame.midX+180, frame.maxY-100)
         
         
         
         self.addChild(scoreLabel)
-        
+        self.addChild(info)
         
         
         tapTime = CFAbsoluteTimeGetCurrent()
@@ -68,6 +80,28 @@ class GameScene: SKScene {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
 
+        let touch : AnyObject!  = touches.anyObject()
+        let location = touch.locationInNode(self)
+        let touchedNode = self.nodeAtPoint(location)
+        
+        
+        
+        if(touchedNode.name){
+            if(touchedNode.name == "info"){
+//            NSLog("\(touchedNode.name)")
+            
+            
+            let trans = SKTransition.revealWithDirection(SKTransitionDirection.Left, duration: 0.4)
+            
+          
+            let infoScene = Info(size: self.scene.size)
+            infoScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene.view.presentScene(infoScene,transition: trans)
+            }
+            
+        }
+        else{
+        
         if(started){
             rotations++
             
@@ -77,17 +111,14 @@ class GameScene: SKScene {
 //            NSLog("Goal rotation : \(goal.zRotation)")
 //            NSLog("Diff : \(target.zRotation - goal.zRotation)")
             
-           
-           
-                
-                
-//                error = targetTime - (CFAbsoluteTimeGetCurrent() - tapTime)
+
+
                 
                 error = target.zRotation - goal.zRotation
             
             
 //            scoreLabel.text = String(format:"%@%.2f", "Error : ", error)
-            scoreLabel.text = String("Score : \(rotations)")
+            scoreLabel.text = String("\(rotations)")
             
             deltaError = abs(error) / 2
 //            NSLog("Delta Error : \(deltaError)")
@@ -110,11 +141,17 @@ class GameScene: SKScene {
         target.runAction(SKAction.repeatAction(action, count:1), completion: endGame)
         }
         
-       
-
+        }
+        
     }
     
     func endGame(){
+        
+
+        if(rotations > vals.integerForKey("highScore")){
+        vals.setInteger(rotations, forKey: "highScore")
+        }
+        
         started = false
 //        scoreLabel.text = "Ended"
         error = 0;
@@ -123,6 +160,8 @@ class GameScene: SKScene {
         rotations = -1
         target.zRotation = 0
         goal.zRotation = 0//CGFloat(M_PI)
+        
+       
         
         
     }

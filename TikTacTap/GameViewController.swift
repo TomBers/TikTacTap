@@ -8,6 +8,8 @@
 
 import UIKit
 import SpriteKit
+import GameKit
+
 
 extension SKNode {
     class func unarchiveFromFile(file : NSString) -> SKNode? {
@@ -26,14 +28,43 @@ extension SKNode {
 
 class GameViewController: UIViewController {
 
+    let localPlayer = GKLocalPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        localPlayer.authenticateHandler = {(viewController : UIViewController!, error : NSError!) -> Void in
+            
+            
+            if(viewController != nil){
+                NSLog("Prob with View Controller")
+            }
+            else if (self.localPlayer.authenticated){
+                NSLog("\(self.localPlayer.description)")
+            }
+            else{
+                NSLog("Error : \(error)")
+            }
+            
+            NSLog("Hello : \(self.localPlayer.playerID)")
+            if(self.localPlayer.authenticated){
+                NSLog("Hello : \(self.localPlayer.playerID)")
+            }
+            else{
+                NSLog("Not Logged in")
+            }
+            
+            
+        }
 
+        
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
             let skView = self.view as SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
+//            skView.showsFPS = true
+//            skView.showsNodeCount = true
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
@@ -62,4 +93,10 @@ class GameViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
     
-}
+    
+        
+        
+    }
+
+    
+
